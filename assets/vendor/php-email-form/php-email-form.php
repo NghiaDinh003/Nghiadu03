@@ -6,6 +6,13 @@ class PHP_Email_Form {
     public $from_email;
     public $subject;
     public $smtp;
+    public $message;
+    public $headers;
+
+    public function __construct() {
+        $this->message = '';
+        $this->headers = '';
+    }
 
     public function add_message($message, $label = '') {
         if ($label) {
@@ -16,9 +23,9 @@ class PHP_Email_Form {
     }
 
     public function send() {
-        $headers = "From: $this->from_name <$this->from_email>\r\n";
-        $headers .= "Reply-To: $this->from_email\r\n";
-        $headers .= "Content-type: text/html\r\n";
+        $this->headers .= "From: $this->from_name <$this->from_email>\r\n";
+        $this->headers .= "Reply-To: $this->from_email\r\n";
+        $this->headers .= "Content-type: text/html\r\n";
 
         if (!empty($this->smtp)) {
             $host = $this->smtp['host'];
@@ -30,11 +37,11 @@ class PHP_Email_Form {
             ini_set("sendmail_from", $this->from_email);
             ini_set("auth_username", $username);
             ini_set("auth_password", $password);
-            $headers .= "MIME-Version: 1.0\r\n";
-            $headers .= "Content-type: text/html\r\n";
+            $this->headers .= "MIME-Version: 1.0\r\n";
+            $this->headers .= "Content-type: text/html\r\n";
         }
 
-        return mail($this->to, $this->subject, $this->message, $headers);
+        return mail($this->to, $this->subject, $this->message, $this->headers);
     }
 }
 
