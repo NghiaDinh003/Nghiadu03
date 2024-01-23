@@ -1,1 +1,6 @@
-Hello, thank you for visiting my CV Online, hope you have a good experience when using this interface. HELLO TEST BRANCH.
+Hello Anh, Chị !!!
+
+Thank you for visiting my portfolio Online, hope you have a good experience when using this interface.
+
+with best regards,
+NghiaDinh.
